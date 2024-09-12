@@ -27,12 +27,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.administradordeproyectos.ui.Login
 import com.example.administradordeproyectos.ui.MiUI
 import com.example.administradordeproyectos.ui.theme.AdministradorDeProyectosTheme
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+
+
         setContent {
             AdministradorDeProyectosTheme {
                 // A surface container using the 'background' color from the theme
@@ -40,14 +52,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ViewContainer()
+                    val currentUser = auth.currentUser
+                    if (currentUser != null) {
+                        ViewContainer()
+                    }
                 }
             }
         }
     }
+
 }
 @Composable
 fun ViewContainer() {
+    var auth = Firebase.auth
     Scaffold(
         content = { paddingValues ->
             Box(
@@ -55,7 +72,12 @@ fun ViewContainer() {
                     .padding(paddingValues)
                     .fillMaxSize()
             ) {
+                val currentUser = auth.currentUser
+                if (currentUser != null) {
                 MiUI()
+                }else{
+                    Login()
+                }
 
 
             }
