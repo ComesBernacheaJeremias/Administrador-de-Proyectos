@@ -78,6 +78,20 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
     implementation("com.google.firebase:firebase-analytics")
+    /*View Model*/
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
 
+    //Navigation
+    val nav_version = "2.8.0"
+
+    // Jetpack Compose integration
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Views/Fragments integration
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+
+    // Feature module support for Fragments
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 
 }

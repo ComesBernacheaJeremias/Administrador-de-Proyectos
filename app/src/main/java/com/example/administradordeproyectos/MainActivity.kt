@@ -52,19 +52,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val currentUser = auth.currentUser
-                    if (currentUser != null) {
-                        ViewContainer()
-                    }
+                    ViewContainer()
+
                 }
             }
         }
     }
 
 }
+
 @Composable
 fun ViewContainer() {
-    var auth = Firebase.auth
+    val auth = Firebase.auth
     Scaffold(
         content = { paddingValues ->
             Box(
@@ -74,8 +73,8 @@ fun ViewContainer() {
             ) {
                 val currentUser = auth.currentUser
                 if (currentUser != null) {
-                MiUI()
-                }else{
+                    MiUI()
+                } else {
                     Login()
                 }
 
@@ -85,8 +84,6 @@ fun ViewContainer() {
     )
 
 }
-
-
 
 
 @Preview(showBackground = true)
