@@ -22,12 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.administradordeproyectos.domain.AuthViewModel
 import com.example.administradordeproyectos.domain.login
 
-@Preview
+
 @Composable
-fun RegisterUi(viewModel: AuthViewModel = viewModel()) {
+fun RegisterUi(navController: NavController, viewModel: AuthViewModel = viewModel()) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var user by remember { mutableStateOf("") }
@@ -90,6 +91,7 @@ fun RegisterUi(viewModel: AuthViewModel = viewModel()) {
                 if (email.isNotBlank() && password.isNotBlank() && user.isNotBlank()) {
                     //registrar = true
                     viewModel.register(email, password)
+                    navController.navigate("miui")
 
                 } else {
                     isError = true

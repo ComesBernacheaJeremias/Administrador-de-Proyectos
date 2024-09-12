@@ -1,16 +1,11 @@
 package com.example.administradordeproyectos.domain
 
 
-import android.util.Log
-import android.widget.Toast
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
-import com.example.administradordeproyectos.ui.MiUI
+import androidx.navigation.NavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
@@ -49,7 +44,7 @@ fun Register(email:String, password:String) {
 
  */
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(private val navController: NavController) : ViewModel() {
     private val auth = Firebase.auth
     var user by mutableStateOf<FirebaseUser?>(null)
     var isLoading by mutableStateOf(false)
@@ -63,6 +58,7 @@ class AuthViewModel : ViewModel() {
                 isLoading = false
                 if (task.isSuccessful) {
                     user = auth.currentUser
+                    navController.navigate("miui") // Navega a MiUI
 
                 } else {
                     errorMessage = "Authentication failed."
@@ -77,11 +73,15 @@ class AuthViewModel : ViewModel() {
                 isLoading = false
                 if (task.isSuccessful) {
                     user = auth.currentUser
+                    navController.navigate("miui") // Navega a MiUI
 
                 } else {
                     errorMessage = "Authentication failed."
                 }
             }
+    }
+    fun goRegister(){
+        navController.navigate("register")
     }
 
 }

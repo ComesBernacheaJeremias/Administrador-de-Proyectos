@@ -34,7 +34,7 @@ fun login(email:String, password:String) {
 
             }
         }
-    if (goUI){
+   /* if (goUI){
         MiUI()
         Toast.makeText(
             context,
@@ -42,4 +42,6 @@ fun login(email:String, password:String) {
             Toast.LENGTH_SHORT,
         ).show()
     }
+
+    */
 }

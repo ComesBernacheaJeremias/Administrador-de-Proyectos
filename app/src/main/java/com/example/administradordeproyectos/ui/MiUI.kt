@@ -11,9 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+
 @Preview
 @Composable
-fun MiUI(){
+fun MiUI(navController: NavController){
     //aca estaria la pantalla principal
 
     Column(

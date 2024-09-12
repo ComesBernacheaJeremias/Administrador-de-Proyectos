@@ -24,13 +24,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.administradordeproyectos.domain.AuthViewModel
 import com.example.administradordeproyectos.domain.login
 
 
 
 @Composable
-fun Login(viewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+fun Login(navController: NavController,viewModel: AuthViewModel = viewModel()) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
@@ -78,7 +81,6 @@ fun Login(viewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewMo
         Button(
             onClick = {
                 if (email.isNotBlank() && password.isNotBlank()) {
-                loginFun = true
                     viewModel.login(email, password)
 
                 } else {
@@ -94,19 +96,19 @@ fun Login(viewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewMo
         Button(
             onClick = {
                 goRegister = true
+                viewModel.goRegister()
 
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Registrarse")
+            navController.navigate("register")
         }
 
         if (isError) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "Por favor, completa ambos campos")
         }
-        if (goRegister){
-            RegisterUi()
-        }
+
     }
 }
