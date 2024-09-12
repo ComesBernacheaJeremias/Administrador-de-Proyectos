@@ -1,1 +1,3 @@
 /build
+#ignora el json de firebase
+google-services.json
