@@ -12,10 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -28,12 +25,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.Visibility
-import com.example.administradordeproyectos.domain.validateJWT
+import com.example.administradordeproyectos.ui.MiUI
 import com.example.administradordeproyectos.ui.theme.AdministradorDeProyectosTheme
 
 class MainActivity : ComponentActivity() {
@@ -52,8 +46,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
 @Composable
 fun ViewContainer() {
     Scaffold(
@@ -71,76 +63,14 @@ fun ViewContainer() {
     )
 
 }
-@Composable
-fun MiUI() {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var isError by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Login")
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = email,
-            onValueChange = {
-                email = it
-                isError = false
-            },
-            label = { Text("Correo electrónico") },
-            isError = isError && email.isBlank(),
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = password,
-            onValueChange = {
-                password = it
-                isError = false
-            },
-            label = { Text("Contraseña") },
-            isError = isError && password.isBlank(),
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                if (email.isNotBlank() && password.isNotBlank()) {
-                   val onLogin = email + password
-                    Log.i("Corcho", "$onLogin")
-
-                } else {
-                    isError = true
-                }
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Iniciar sesión")
-        }
-
-        if (isError) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = "Por favor, completa ambos campos")
-        }
-    }
-}
 
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     AdministradorDeProyectosTheme {
-        ViewContainer()
+        //ViewContainer()
     }
 }

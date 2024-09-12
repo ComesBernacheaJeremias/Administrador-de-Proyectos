@@ -1,4 +1,4 @@
-package com.example.administradordeproyectos.domain
+package com.example.administradordeproyectos.domain.JWT
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm

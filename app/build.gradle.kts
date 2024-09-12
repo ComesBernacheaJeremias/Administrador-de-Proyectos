@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    //para firebase
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -70,5 +72,11 @@ dependencies {
 
     //JWT
     implementation("com.auth0:java-jwt:4.2.0")
+
+    // Import the Firebase BoM
+
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    implementation("com.google.firebase:firebase-analytics")
+
 
 }

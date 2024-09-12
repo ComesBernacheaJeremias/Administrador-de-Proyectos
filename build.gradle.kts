@@ -2,4 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
+    // Add the dependency for the Google services Gradle plugin---esto es para firebase
+    id("com.google.gms.google-services") version "4.4.2" apply false
+
 }
