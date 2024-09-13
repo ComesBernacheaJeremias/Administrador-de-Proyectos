@@ -31,10 +31,12 @@ import com.example.administradordeproyectos.ui.theme.AdministradorDeProyectosThe
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
 
     private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +45,20 @@ class MainActivity : ComponentActivity() {
         auth = Firebase.auth
 
 
+
         setContent {
             AdministradorDeProyectosTheme {
                 val auth = Firebase.auth
                 val currentUser = auth.currentUser
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "login") {
-                    navigation(startDestination = "login", route = "auth") {
-                        composable("login") { Login(navController)
-                        val viewModel = it.sharedViewModel<AuthViewModel>(navController)}
-                        composable("register") { RegisterUi(navController) }
-                        composable("miui") { MiUI(navController) }
+                NavHost(navController = navController, startDestination = "Home") {
+
+                    composable<Home> {
+                        Login(navController)
+                        // val viewModel = it.sharedViewModel<AuthViewModel>(navController)}
+                        composable<register> { RegisterUi(navController) }
+                        composable<miui> { MiUI(navController) }
+
                     }
                 }
 
@@ -79,6 +84,16 @@ class MainActivity : ComponentActivity() {
 
     }
 }
+
+@Serializable
+object Home
+@Serializable
+object register
+@Serializable
+object miui
+
+
+
 
 @Composable
 inline fun <reified T: ViewModel> NavBackStackEntry.sharedViewModel(navController: NavController): T {

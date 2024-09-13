@@ -3,6 +3,11 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     //para firebase
     id("com.google.gms.google-services")
+    //para navigation
+    alias(libs.plugins.kotlin.serialization)
+
+
+
 }
 
 android {
@@ -86,6 +91,9 @@ dependencies {
 
     // Jetpack Compose integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation(libs.kotlinx.serialization.json)
+
+
 
     // Views/Fragments integration
     implementation("androidx.navigation:navigation-fragment:$nav_version")
