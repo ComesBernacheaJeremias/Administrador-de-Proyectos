@@ -28,7 +28,8 @@ import com.example.administradordeproyectos.domain.login
 
 
 @Composable
-fun RegisterUi(navController: NavController, viewModel: AuthViewModel = viewModel()) {
+fun RegisterUi(navController: NavController) {
+    Log.i("Corcho", "entro register")
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var user by remember { mutableStateOf("") }
@@ -90,7 +91,7 @@ fun RegisterUi(navController: NavController, viewModel: AuthViewModel = viewMode
             onClick = {
                 if (email.isNotBlank() && password.isNotBlank() && user.isNotBlank()) {
                     //registrar = true
-                    viewModel.register(email, password)
+                    //viewModel.register(email, password)
                     navController.navigate("miui")
 
                 } else {

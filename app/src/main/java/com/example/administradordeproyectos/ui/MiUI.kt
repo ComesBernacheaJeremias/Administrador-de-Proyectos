@@ -1,5 +1,6 @@
 package com.example.administradordeproyectos.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.navigation.NavController
 @Preview
 @Composable
 fun MiUI(navController: NavController){
+    Log.i("Corcho", "entro UI")
     //aca estaria la pantalla principal
 
     Column(

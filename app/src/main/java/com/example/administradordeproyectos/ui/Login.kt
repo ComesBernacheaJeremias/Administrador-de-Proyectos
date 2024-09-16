@@ -29,16 +29,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.administradordeproyectos.domain.AuthViewModel
 import com.example.administradordeproyectos.domain.login
-
+import com.example.administradordeproyectos.register
 
 
 @Composable
-fun Login(navController: NavController,viewModel: AuthViewModel = viewModel()) {
+fun Login(navController: NavController) {
+    Log.i("Corcho", "entro login")
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
-    var loginFun by remember { mutableStateOf(false) }
-    var goRegister by remember { mutableStateOf(false) }
+
 
     Column(
         modifier = Modifier
@@ -48,7 +49,9 @@ fun Login(navController: NavController,viewModel: AuthViewModel = viewModel()) {
         verticalArrangement = Arrangement.Center,
 
     ) {
+        Log.i("Corcho", "entro Column")
         Text(text = "Login")
+
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -81,7 +84,7 @@ fun Login(navController: NavController,viewModel: AuthViewModel = viewModel()) {
         Button(
             onClick = {
                 if (email.isNotBlank() && password.isNotBlank()) {
-                    viewModel.login(email, password)
+                   // viewModel.login(email, password)
 
                 } else {
                     isError = true
@@ -95,15 +98,17 @@ fun Login(navController: NavController,viewModel: AuthViewModel = viewModel()) {
 
         Button(
             onClick = {
-                goRegister = true
-                viewModel.goRegister()
+                navController.navigate(register)
+
 
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Registrarse")
-            navController.navigate("register")
+
         }
+
+
 
         if (isError) {
             Spacer(modifier = Modifier.height(8.dp))
