@@ -108,10 +108,7 @@ fun RegisterUi(navController: NavController) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "Por favor, completa ambos campos")
             Log.i("Corcho", "$email, $password, $user")
-        }/*
-        if (registrar){
-            register(email, password)
-            Log.i("Corcho", "$email, $password, $user")
-        }*/
+        }
+
     }
 }

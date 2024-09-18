@@ -133,98 +133,10 @@ object register
 object miui
 
 
-@Composable
-inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navController: NavController): T {
-    val navGraphRoute = destination.parent?.route ?: return viewModel()
-    val parentEntry = remember(this) {
-        navController.getBackStackEntry(navGraphRoute)
-    }
-    return viewModel(parentEntry)
-}
 
-/*
-@Composable
-fun ViewContainer() {
-    val auth = Firebase.auth
-    val currentUser = auth.currentUser
-
-    /*val navController = rememberNavController()
-
-    NavHost(navController, startDestination = "login") {
-        composable("login") { Login() }
-        composable("register") { RegisterUi() }
-        composable("miui") { MiUI() }
-    }
-
-     */
-
-
-    LaunchedEffect(currentUser) {
-        if (currentUser != null) {
-            navController.navigate("miui") {
-                popUpTo("login") {
-                    inclusive = true
-                } // Evita que el usuario vuelva a la pantalla de login
-            }
-        } else {
-            navController.navigate("login") {
-                popUpTo("miui") {
-                    inclusive = true
-                } // Evita que el usuario vuelva a la pantalla de miui
-            }
-        }
-    }
-
-
+fun goBack(){
 
 }
-/*
-
-
-    Scaffold(
-        content = { paddingValues ->
-            Box(
-                modifier = Modifier
-                    .padding(paddingValues)
-                    .fillMaxSize()
-            ) {
-
-                if (currentUser != null) {
-                    MiUI()
-                } else {
-                    Login()
-                }
-
-
-            }
-        }
-    )
-
-}
-
- */
-
-class AuthViewModelFactory(private val navController: NavController) : ViewModelProvider.Factory {
-    fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return AuthViewModel(navController) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
-@Composable
-fun LoginScreen(navController: NavController) {
-    val viewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory(navController))
-    // Usa viewModel en tu UI
-}
-
-@Composable
-fun RegisterScreen(navController: NavController) {
-    val viewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory(navController))
-    // Usa viewModel en tu UI
-}
-
 
 
 
@@ -237,4 +149,3 @@ fun GreetingPreview() {
     }
 }
 
- */
